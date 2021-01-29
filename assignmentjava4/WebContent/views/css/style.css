@@ -1,0 +1,78 @@
+
+.form-control:focus {
+  box-shadow: none !important;
+    border: 3px solid #86cbf8 !important;
+}
+.form-control {
+    box-shadow: none !important;
+}
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+.button-not-shadow{
+    box-shadow: none !important;
+    background: #313131 !important;
+    border: #313131 !important;
+}
+.button-not-shadow:focus {
+    box-shadow: none !important;
+   
+  }
+  .button-not-shadow:hover {
+    box-shadow: none !important;
+    background: #3a3a3a !important;
+}
+.header-colors{
+    background: #202020 !important;
+}
+.navbar-brand{
+    color:#fff !important;
+}
+img#logo{
+  width: 50px;
+}
+video#slide{
+  width: 100%;
+}
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+body {
+  background: #181818 !important;
+  
+  min-height: 100vh;
+}
+.Anton{
+  font-family:Anton;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.card-title{
+  color: #fff;
+}
+.card-text{
+  color: #aaa;
+}
+hr.solid {
+    border-top: 2px solid #999;
+}
+.col-3 .row .col-6 .img-fluid {
+  height: 110px !important;
+  width: 200px;
+}
+.row .col-3 .float-right .img-fluid {
+  height: 200px !important;
+  width: 90%;
+}
