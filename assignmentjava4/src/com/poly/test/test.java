@@ -7,11 +7,11 @@ public class test {
 	public static void main(String[] args) {
 		UserDAO dao = new UserDAO();
 		User entity = new User();
-		entity.setAdmin(false);
-		entity.setEmail("nhan@gmail.com");
+		entity.setAdmin(true);
+		entity.setEmail("nha123n@gmail.com");
 		entity.setFullname("nhan");
 		entity.setPassword("123");
-		entity.setId("lequynhan");
+		entity.setId("lequynhan2");
 		dao.create(entity);
 	}
 }

@@ -13,7 +13,7 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="views/css/style.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -29,7 +29,7 @@
 	<nav class="navbar navbar-expand-sm sticky-top header-colors ">
 		<div class="col-3">
 			<a class="navbar-brand" href="#"><img id="logo"
-				class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png">
+				class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png">
 				<span>Youtubi</span></a>
 		</div>
 		<div class="col-6">
@@ -90,72 +90,81 @@
 	<div class="row w-100 mt-5 justify-content-center">
 		<div class="col-2"></div>
 		<div class="col-8 rounded bg-white mt-5">
-			<div class="row">
-				<div class="col-md-4 border-right">
-					<div
-						class="d-flex flex-column align-items-center text-center p-3 py-5">
-						<img class="img-thumbnail mt-5" src="/image/youtube.png"
-							width="400">
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="p-3 py-5">
-						<div
-							class="d-flex justify-content-between align-items-center mb-3">
+			<form>
+				<div class="row">
 
-							<h6 class="text-right">Edit Profile</h6>
-						</div>
-						<div class="row mt-2">
-							<div class=" col-md-12 inputs px-4">
-								<h6 class="text-uppercase">Youtube Id</h6>
-								<input type="text" class="form-control" placeholder="Id"
-									value="${video.id}">
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class=" col-md-12 inputs px-4">
-								<h6 class="text-uppercase">Video Title</h6>
-								<input type="text" class="form-control" placeholder="Title"
-									value="${video.title}">
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class=" col-md-12 inputs px-4">
-								<h6 class="text-uppercase">View Count</h6>
-								<input type="text" class="form-control" placeholder="View count"
-									value="${video.views}">
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class=" col-md-12 inputs px-4">
-								<input class="form-check-inline" (${video.active}?cheked :'')
-									style="top: 0.1rem !important; left: -2rem !important; width: 1.1rem !important; height: 1.1rem !important;"
-									type="checkbox" value="" id="defaultCheck1"> <label
-									class="form-check-label ml-n3 "
-									style="font-size: 20px !important;" for="defaultCheck1">
-									Active </label> <input class="form-check-inline ml-3 " (${video.active}?'' :check)
-									style="top: 0.1rem !important; left: -2rem !important; width: 1.1rem !important; height: 1.1rem !important;"
-									type="checkbox" value="" id="defaultCheck1"> <label
-									class="form-check-label ml-n3"
-									style="font-size: 20px !important;" for="defaultCheck1">
-									Inactive </label>
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class=" col-md-12 inputs px-4">
-								<h6 class="text-uppercase">Description</h6>
-								<textarea rows="4" class="form-control" placeholder="Description"
-									value="${video.description}"></textarea>
-							</div>
-						</div>
-						<div class="mt-5 text-right">
-							<button class="btn btn-primary profile-button" type="button">Save
-								Profile</button>
-							<button class="btn btn-danger profile-button" type="button">Delete</button>
+					<div class="col-md-4 border-right">
+						<div
+							class="d-flex flex-column align-items-center text-center p-3 py-5">
+							<img class="img-thumbnail mt-5" src="views/image/youtube.png"
+								width="400">
 						</div>
 					</div>
+					<div class="col-md-8">
+						<div class="p-3 py-5">
+							<div
+								class="d-flex justify-content-between align-items-center mb-3">
+
+								<h6 class="text-right">Edit Profile</h6>
+							</div>
+							<div class="row mt-2">
+								<div class=" col-md-12 inputs px-4">
+									<h6 class="text-uppercase">Youtube Id</h6>
+									<input type="text" class="form-control" name="id" placeholder="Id"
+										value="${video.id}">
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class=" col-md-12 inputs px-4">
+									<h6 class="text-uppercase">Video Title</h6>
+									<input type="text" class="form-control" name="title" placeholder="Title"
+										value="${video.title}">
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class=" col-md-12 inputs px-4">
+									<h6 class="text-uppercase">View Count</h6>
+									<input type="text" class="form-control" name="views"
+										placeholder="View count" value="${video.views}">
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class=" col-md-12 inputs px-4">
+									<input class="form-check-inline" name="active"
+										${video.active == true ? 'checked' : ''}
+										style="top: 0.1rem !important; left: -2rem !important; width: 1.1rem !important; height: 1.1rem !important;"
+										type="checkbox" value="true" id="defaultCheck1"> <label
+										class="form-check-label ml-n3 "
+										style="font-size: 20px !important;" for="defaultCheck1">
+										Active </label> <input class="form-check-inline ml-3 "  name="active"
+										${video.active == true ? '' : 'checked'}
+										style="top: 0.1rem !important; left: -2rem !important; width: 1.1rem !important; height: 1.1rem !important;"
+										type="checkbox" value="" id="defaultCheck1"> <label
+										class="form-check-label ml-n3"
+										style="font-size: 20px !important;" for="defaultCheck1">
+										Inactive </label>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class=" col-md-12 inputs px-4">
+									<h6 class="text-uppercase">Description</h6>
+									<textarea rows="4" class="form-control"  name="description"
+										placeholder="Description" >${video.description}</textarea>
+								</div>
+							</div>
+							<div class="mt-5 text-rigx1ht">
+							<input class="btn btn-primary profile-button" name="actions"
+									value="Create" type="submit">
+								<input class="btn btn-primary profile-button" name="actions"
+									value="Update" type="submit"> <input
+									class="btn btn-danger profile-button" name="actions"
+									value="Delete" type="submit">	
+							</div>
+						</div>
+					</div>
+
 				</div>
-			</div>
+			</form>
 		</div>
 		<div class="col-2"></div>
 	</div>

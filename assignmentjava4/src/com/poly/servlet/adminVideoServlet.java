@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.poly.dao.VideoDAO;
 import com.poly.entity.Video;
+
 
 /**
  * Servlet implementation class adminVideoServlet
@@ -55,6 +58,39 @@ public class adminVideoServlet extends HttpServlet {
 			entity = dao.findById(keyWord);
 			req.setAttribute("video", entity);
 			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			break;
+		}
+		case "Update": {
+			try {
+				BeanUtils.populate(entity, req.getParameterMap());
+			} catch (Exception e) {
+				throw new RuntimeException();
+			}
+			dao.update(entity);
+			req.setAttribute("video", entity);
+			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			break;
+		}
+		case "Delete": {
+			String keyWord = req.getParameter("id");
+			dao.delete(keyWord);
+			entity = new Video();
+			req.setAttribute("video", entity);
+			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			break;
+
+		}
+		case "Create" : {
+			try {
+				BeanUtils.populate(entity, req.getParameterMap());
+			}catch(Exception e) {
+				throw new RuntimeException();
+			}
+			dao.create(entity);
+			entity = new Video();
+			req.setAttribute("video", entity);
+			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			break;
 		}
 		}
 	}
