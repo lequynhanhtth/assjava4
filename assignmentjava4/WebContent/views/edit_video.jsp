@@ -110,15 +110,15 @@
 							<div class="row mt-2">
 								<div class=" col-md-12 inputs px-4">
 									<h6 class="text-uppercase">Youtube Id</h6>
-									<input type="text" class="form-control" name="id" placeholder="Id"
-										value="${video.id}">
+									<input type="text" class="form-control" name="id" readonly="readonly"
+										placeholder="Id" value="${video.id}">
 								</div>
 							</div>
 							<div class="row mt-3">
 								<div class=" col-md-12 inputs px-4">
 									<h6 class="text-uppercase">Video Title</h6>
-									<input type="text" class="form-control" name="title" placeholder="Title"
-										value="${video.title}">
+									<input type="text" class="form-control" name="title"
+										placeholder="Title" value="${video.title}">
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -136,7 +136,7 @@
 										type="checkbox" value="true" id="defaultCheck1"> <label
 										class="form-check-label ml-n3 "
 										style="font-size: 20px !important;" for="defaultCheck1">
-										Active </label> <input class="form-check-inline ml-3 "  name="active"
+										Active </label> <input class="form-check-inline ml-3 " name="active"
 										${video.active == true ? '' : 'checked'}
 										style="top: 0.1rem !important; left: -2rem !important; width: 1.1rem !important; height: 1.1rem !important;"
 										type="checkbox" value="" id="defaultCheck1"> <label
@@ -148,17 +148,18 @@
 							<div class="row mt-3">
 								<div class=" col-md-12 inputs px-4">
 									<h6 class="text-uppercase">Description</h6>
-									<textarea rows="4" class="form-control"  name="description"
-										placeholder="Description" >${video.description}</textarea>
+									<textarea rows="4" class="form-control" name="description"
+										placeholder="Description">${video.description}</textarea>
 								</div>
 							</div>
 							<div class="mt-5 text-rigx1ht">
-							<input class="btn btn-primary profile-button" name="actions"
-									value="Create" type="submit">
 								<input class="btn btn-primary profile-button" name="actions"
+									value="${newcr}" type="submit"> <input
+									class="btn btn-primary profile-button" name="actions"
 									value="Update" type="submit"> <input
 									class="btn btn-danger profile-button" name="actions"
-									value="Delete" type="submit">	
+									value="Delete" type="submit">
+
 							</div>
 						</div>
 					</div>

@@ -51,10 +51,11 @@ public class adminVideoServlet extends HttpServlet {
 		switch (action) {
 		case "edit": {
 			String keyWord = req.getParameter("id");
+			req.setAttribute("newcr","New");
 			if (keyWord == null) {
 				req.setAttribute("video", entity);
 				req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
-			}
+			}	
 			entity = dao.findById(keyWord);
 			req.setAttribute("video", entity);
 			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
@@ -67,6 +68,7 @@ public class adminVideoServlet extends HttpServlet {
 				throw new RuntimeException();
 			}
 			dao.update(entity);
+			req.setAttribute("newcr","New");
 			req.setAttribute("video", entity);
 			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
 			break;
@@ -75,6 +77,7 @@ public class adminVideoServlet extends HttpServlet {
 			String keyWord = req.getParameter("id");
 			dao.delete(keyWord);
 			entity = new Video();
+			req.setAttribute("newcr","Create");
 			req.setAttribute("video", entity);
 			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
 			break;
@@ -86,8 +89,16 @@ public class adminVideoServlet extends HttpServlet {
 			}catch(Exception e) {
 				throw new RuntimeException();
 			}
+			entity.setId(null);
 			dao.create(entity);
+			req.setAttribute("newcr","New");
+			req.setAttribute("video", entity);
+			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			break;
+		}
+		case "New": {
 			entity = new Video();
+			req.setAttribute("newcr","Create");
 			req.setAttribute("video", entity);
 			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
 			break;
