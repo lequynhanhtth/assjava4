@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.poly.common.PageInfo;
+import com.poly.common.PageType;
+
 /**
  * Servlet implementation class indexServlet
  */
@@ -26,11 +29,11 @@ public class indexServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			String action  = req.getParameter("actions");
 			if(action == null || action.equals("")) {
-				req.getRequestDispatcher("views/index.jsp").forward(req, resp);
+				PageInfo.prepareAndForward(req, resp, PageType.INDEX);
 			}else if (action.equals("Login")) {
-				req.getRequestDispatcher("views/login.jsp").forward(req, resp);
+				PageInfo.prepareAndForward(req, resp, PageType.LOGIN);
 			}else if (action.equals("Sign up")) {
-				req.getRequestDispatcher("views/Sign-up.jsp").forward(req, resp);
+				PageInfo.prepareAndForward(req, resp, PageType.SIGN_UP);
 			}
 	}
 
@@ -40,7 +43,7 @@ public class indexServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("views/index.jsp").forward(request, response);
+		
 	}
 
 	/**
