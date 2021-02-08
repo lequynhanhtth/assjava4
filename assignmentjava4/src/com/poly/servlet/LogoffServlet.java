@@ -21,7 +21,6 @@ public class LogoffServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		CookieUtils.add("username", null, 0, resp);
 		SessionUtils.invalidate(req);
 		PageInfo.prepareAndForward(req, resp, PageType.INDEX);
 	}

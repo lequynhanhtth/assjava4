@@ -72,7 +72,7 @@ public class UserDAO {
 	public List<User> findByRole(boolean role) {
 		String jqpl = "SELECT o from User o where o.role = :role";
 		TypedQuery<User> query = em.createQuery(jqpl, User.class);
-		query.setParameter("role", role);
+		query.setParameter("role", String.valueOf(role));
 		List<User> list = query.getResultList();
 		return list;
 	}

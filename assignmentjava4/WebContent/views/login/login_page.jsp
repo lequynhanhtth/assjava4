@@ -12,7 +12,7 @@
 				</span>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="username"> <span
+					<input class="input100" type="text" value="${username}" name="username"> <span
 						class="focus-input100" data-placeholder="Username"></span>
 				</div>
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.poly.common.CookieUtils;
 import com.poly.common.PageInfo;
 import com.poly.common.PageType;
 
@@ -31,6 +32,8 @@ public class indexServlet extends HttpServlet {
 			if(action == null || action.equals("")) {
 				PageInfo.prepareAndForward(req, resp, PageType.INDEX);
 			}else if (action.equals("Login")) {
+				String username = CookieUtils.get("username", req);
+				req.setAttribute("username", username);
 				PageInfo.prepareAndForward(req, resp, PageType.LOGIN);
 			}else if (action.equals("Sign up")) {
 				PageInfo.prepareAndForward(req, resp, PageType.SIGN_UP);
