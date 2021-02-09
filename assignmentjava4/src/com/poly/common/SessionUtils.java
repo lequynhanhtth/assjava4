@@ -3,6 +3,8 @@ package com.poly.common;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.poly.entity.User;
+
 public class SessionUtils {
 	public static void add(HttpServletRequest req, String name, Object value) {
 		HttpSession session = req.getSession();
@@ -25,8 +27,8 @@ public class SessionUtils {
 	}
 
 	public static String getLoginedUsername(HttpServletRequest req) {
-		Object username = get(req, "username");
-		return username == null ? null : username.toString();
+		User username =(User) get(req, "username");
+		return username == null ? null : username.getId();
 	}
 
 }

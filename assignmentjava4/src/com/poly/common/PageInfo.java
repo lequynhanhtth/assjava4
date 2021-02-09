@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.poly.dao.UserDAO;
+import com.poly.entity.User;
+
 public class PageInfo {
 	public static Map<PageType, PageInfo> pageRoute = new HashMap<PageType, PageInfo>();
 	private String title;
@@ -22,16 +25,25 @@ public class PageInfo {
 				new PageInfo("index/head_index.jsp", "Trang chủ", "index/indexpage.jsp", null, true));
 		pageRoute.put(PageType.SIGN_UP,
 				new PageInfo(null, "Đăng ký", "sign_up/sign_up_page.jsp", "login/login_script.jsp", false));
+		pageRoute.put(PageType.EDIT_PROFILE, new PageInfo("index_login/head_page.jsp", "Chỉnh sửa tài khoản",
+				"edit_user/edit_profile.jsp", "index_login/script_page.jsp", true));
+		pageRoute.put(PageType.CHANGE_PASSWORD, new PageInfo("index_login/head_page", "Đổi mật khẩu",
+				"edit_user/changePassword.jsp", "index_login/script_page.jsp", true));
+		pageRoute.put(PageType.USER_LIST_PAGE, new PageInfo("admin/head_login.jsp","Quản lý người dùng", "admin/user_page.jsp", "login/login_script.jsp", true));
 	}
 
 	public static void prepareAndForward(HttpServletRequest request, HttpServletResponse respone, PageType pageType)
 			throws ServletException, IOException {
 		PageInfo page = pageRoute.get(pageType);
+		UserDAO dao = new UserDAO();
 		if (page.getCss()) {
-			Object username = SessionUtils.get(request, "username");
+			User username = (User) SessionUtils.get(request, "username");
 			if (username != null) {
-				if (!username.equals("")) {
+				if (!username.getAdmin()) {
 					page.setHead("index_login/head_page.jsp");
+					page.setScriptUrl("index_login/script_page.jsp");
+				}else {
+					page.setHead("admin/head_page.jsp");
 					page.setScriptUrl("index_login/script_page.jsp");
 				}
 			} else {

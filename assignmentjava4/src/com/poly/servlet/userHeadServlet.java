@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
-
 import com.poly.common.PageInfo;
 import com.poly.common.PageType;
 import com.poly.common.SessionUtils;
@@ -16,29 +14,27 @@ import com.poly.dao.UserDAO;
 import com.poly.entity.User;
 
 /**
- * Servlet implementation class saveChangeServlet
+ * Servlet implementation class userHeadServlet
  */
-@WebServlet("/saveChangeServlet")
-public class saveChangeServlet extends HttpServlet {
+@WebServlet("/userHeadServlet")
+public class userHeadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User entity = new User();
-		UserDAO dao = new UserDAO();
-		try {
-			entity.setAdmin(false);
-			BeanUtils.populate(entity, req.getParameterMap());
-			dao.update(entity);
-		} catch (Exception e) {
-			throw new RuntimeException();
+		String action = req.getParameter("actions");
+		switch (action) {
+		case "edit_profile": {
+			UserDAO dao = new UserDAO();
+			User entity = (User)SessionUtils.get(req, "username");
+			req.setAttribute("user", entity);
+			PageInfo.prepareAndForward(req, resp, PageType.EDIT_PROFILE);
+			break;
 		}
-		req.setAttribute("message", "Thay đổi thành công");
-		req.setAttribute("user", entity);
-		PageInfo.prepareAndForward(req, resp, PageType.EDIT_PROFILE);
+		case "change_password": {
+			PageInfo.prepareAndForward(req, resp, PageType.CHANGE_PASSWORD);
+			break;
+		}
+		}
 	}
-
 }

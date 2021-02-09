@@ -28,8 +28,8 @@
                     <i class="fa fa-user-circle "  style="font-size: 25px"></i> ${name}
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Change PassWord</a>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item" href="userHeadServlet?actions=change_password">Change Password</a>
+                    <a class="dropdown-item" href="userHeadServlet?actions=edit_profile">Edit Profile</a>
                     <a class="dropdown-item" href="LogoffServlet">Logoff</a>
                 </div>
             </div>

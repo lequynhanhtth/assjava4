@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.poly.common.PageInfo;
+import com.poly.common.PageType;
 import com.poly.dao.UserDAO;
 import com.poly.entity.User;
-
 
 /**
  * Servlet implementation class adminUserServlet
@@ -44,41 +45,32 @@ public class adminUserServlet extends HttpServlet {
 		List<User> list = new ArrayList<User>();
 		User entity = new User();
 		UserDAO dao = new UserDAO();
-		list = dao.findAll();
-		if (action == null || action.equals("")) {
-			req.setAttribute("Users", list);
-			req.getRequestDispatcher("views/list_user.jsp").forward(req, resp);
-		}
 		switch (action) {
-		case "edit": {
+		case "edit": {	
 			String keyWord = req.getParameter("id");
-			if(keyWord == null) {
-				req.setAttribute("User", entity);
-				req.getRequestDispatcher("views/edit_user.jsp").forward(req, resp);
-			}
-				
-			 entity = dao.findById(keyWord);
-			req.setAttribute("User", entity);
-			req.getRequestDispatcher("views/edit_user.jsp").forward(req, resp);
+			entity = dao.findById(keyWord);
+			req.setAttribute("userdetail", entity);
+			PageInfo.prepareAndForward(req, resp, PageType.USER_LIST_PAGE);
 			break;
 		}
-		case "Update" :{
-			 entity = new User();
-			try {
-				BeanUtils.populate(entity, req.getParameterMap());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		case "Save Profile": {
+			String keyWord = req.getParameter("id");
+			entity =  dao.findById(keyWord);
 			dao.update(entity);
-			req.setAttribute("User", entity);
-			req.getRequestDispatcher("views/edit_user.jsp").forward(req, resp);
+			req.setAttribute("userdetail", entity);
+			req.setAttribute("message", "Thay đổi thành công");
+			list = dao.findAll();
+			req.setAttribute("listusers", list);
+			PageInfo.prepareAndForward(req, resp, PageType.USER_LIST_PAGE);
 			break;
 		}
-		case "Delete" :{
+		case "Delete": {
 			String keyWord = req.getParameter("id");
 			dao.delete(keyWord);
 			req.setAttribute("message", "Xóa thành công");
-			req.getRequestDispatcher("views/list_user.jsp").forward(req, resp);
+			list = dao.findAll();
+			req.setAttribute("listusers", list);
+			PageInfo.prepareAndForward(req, resp, PageType.USER_LIST_PAGE);
 			break;
 		}
 		}

@@ -83,7 +83,7 @@ public class loginServlet extends HttpServlet {
 			
 			User user  = dao.findById(form.getUsername());
 			if(user != null & user.getPassword().equals(form.getPassword())) {
-				SessionUtils.add(request,"username", user.getId());
+				SessionUtils.add(request,"username", user);
 		
 				if(form.isRemember()) {
 					CookieUtils.add("username",form.getUsername(), 24, response);			

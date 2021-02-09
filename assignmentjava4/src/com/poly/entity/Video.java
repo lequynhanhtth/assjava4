@@ -19,7 +19,7 @@ public class Video {
 	String poster;
 	Integer views;
 	String description;
-	Boolean active = true;
+	boolean active = true;
 	@OneToMany(mappedBy = "video")
 	List<Favorite> favorites ;
 	@OneToMany(mappedBy = "video")
@@ -54,10 +54,10 @@ public class Video {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Boolean getActive() {
+	public boolean getActive() {
 		return active;
 	}
-	public void setActive(Boolean active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 	public List<Favorite> getFavorites() {
