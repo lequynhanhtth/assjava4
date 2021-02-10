@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.poly.entity.Report;
+import com.poly.entity.ReportUser;
 import com.poly.entity.Video;
 import com.poly.jpa.JPA;
 
@@ -56,7 +58,7 @@ public class VideoDAO {
 	}
 
 	public Video findById(String keyWord) {
-		
+
 		Video entity = em.find(Video.class, Integer.parseInt(keyWord));
 		return entity;
 	}
@@ -68,4 +70,17 @@ public class VideoDAO {
 		return list;
 	}
 
+	public List<Report> selectVideoFavorite() {
+		String jpql = "Select new Report(o.video.title,count(o),max(o.likedate),min(o.likedate)) from Favorite o group by o.video.title";
+		TypedQuery<Report> query = em.createQuery(jpql, Report.class);
+		List<Report> list = query.getResultList();
+		return list;
+	}
+	public List<ReportUser> selectUserFavorite(String title){
+		String jpql = "Select new ReportUser(o.user.id,o.user.fullname,o.user.email,o.likedate) from Favorite o where o.video.title = :title";
+		TypedQuery<ReportUser> query = em.createQuery(jpql, ReportUser.class);
+		query.setParameter("title", title);
+		List<ReportUser> list =  query.getResultList();
+		return list;
+	}
 }

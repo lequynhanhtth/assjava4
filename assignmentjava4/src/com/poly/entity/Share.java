@@ -27,7 +27,8 @@ User user;
 Video video;
 String email;
 @Temporal(TemporalType.DATE)
-Date sharehelp = new Date();
+Date sharedate = new Date();
+
 public Integer getId() {
 	return id;
 }
@@ -52,10 +53,10 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
-public Date getSharehelp() {
-	return sharehelp;
+public Date getSharedate() {
+	return sharedate;
 }
-public void setSharehelp(Date sharehelp) {
-	this.sharehelp = sharehelp;
+public void setSharedate(Date sharedate) {
+	this.sharedate = sharedate;
 }
 }

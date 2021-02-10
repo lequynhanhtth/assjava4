@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.poly.entity.Report;
+import com.poly.entity.ReportShare;
 import com.poly.entity.Share;
 import com.poly.jpa.JPA;
 
@@ -66,6 +68,13 @@ public class ShareDAO {
 		String jqpl = "select o from Share o";
 		TypedQuery<Share> query = em.createQuery(jqpl, Share.class);
 		List<Share> list = query.getResultList();
+		return list;
+	}
+	public List<ReportShare> selectReportShare(String title){
+		String jpql = "Select new ReportShare(o.user.fullname,o.user.email,o.email,o.sharedate) from Share o where o.video.title = :title";
+		TypedQuery<ReportShare> query = em.createQuery(jpql, ReportShare.class);
+		query.setParameter("title", title);
+		List<ReportShare> list = query.getResultList();
 		return list;
 	}
 }

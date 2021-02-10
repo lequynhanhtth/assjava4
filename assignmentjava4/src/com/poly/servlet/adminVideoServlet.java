@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.poly.common.PageInfo;
+import com.poly.common.PageType;
 import com.poly.dao.VideoDAO;
 import com.poly.entity.Video;
-
 
 /**
  * Servlet implementation class adminVideoServlet
@@ -37,70 +38,78 @@ public class adminVideoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	@Override
-	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("actions");
 		List<Video> list = new ArrayList<Video>();
 		Video entity = new Video();
 		VideoDAO dao = new VideoDAO();
-		if (action == null || action.equals("")) {
-			list = dao.selectAll();
-			req.setAttribute("videos", list);
-			req.getRequestDispatcher("views/list_video.jsp").forward(req, res);
-		}
+
 		switch (action) {
 		case "edit": {
 			String keyWord = req.getParameter("id");
-			req.setAttribute("newcr","New");
-			if (keyWord == null) {
-				req.setAttribute("video", entity);
-				req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
-			}	
+			req.setAttribute("newcr", "New");
 			entity = dao.findById(keyWord);
-			req.setAttribute("video", entity);
-			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			req.setAttribute("videodetail", entity);
+			list = dao.selectAll();
+			req.setAttribute("listvideos", list);
+			PageInfo.prepareAndForward(req, resp, PageType.VIDEO_LIST_PAGE);
 			break;
 		}
 		case "Update": {
+			String keyWord = req.getParameter("id");
+			entity = dao.findById(keyWord);
 			try {
 				BeanUtils.populate(entity, req.getParameterMap());
 			} catch (Exception e) {
 				throw new RuntimeException();
 			}
 			dao.update(entity);
-			req.setAttribute("newcr","New");
-			req.setAttribute("video", entity);
-			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			req.setAttribute("newcr", "New");
+			req.setAttribute("videodetail", entity);
+			list = dao.selectAll();
+			req.setAttribute("listvideos", list);
+			req.setAttribute("message", "Cập nhật thành công");
+			PageInfo.prepareAndForward(req, resp, PageType.VIDEO_LIST_PAGE);
 			break;
 		}
 		case "Delete": {
 			String keyWord = req.getParameter("id");
 			dao.delete(keyWord);
 			entity = new Video();
-			req.setAttribute("newcr","Create");
-			req.setAttribute("video", entity);
-			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			req.setAttribute("newcr", "Create");
+			req.setAttribute("videodetail", entity);
+			list = dao.selectAll();
+			req.setAttribute("listvideos", list);
+			req.setAttribute("message", "Xóa thành công");
+			PageInfo.prepareAndForward(req, resp, PageType.VIDEO_LIST_PAGE);
 			break;
-
 		}
-		case "Create" : {
+		case "Create": {
 			try {
 				BeanUtils.populate(entity, req.getParameterMap());
-			}catch(Exception e) {
+			} catch (Exception e) {
 				throw new RuntimeException();
 			}
 			entity.setId(null);
 			dao.create(entity);
-			req.setAttribute("newcr","New");
-			req.setAttribute("video", entity);
-			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			req.setAttribute("newcr", "New");
+			req.setAttribute("videodetail", entity);
+			list = dao.selectAll();
+			req.setAttribute("listvideos", list);
+			req.setAttribute("hide", "hide");
+			req.setAttribute("message", "Tạo video thành công");
+			PageInfo.prepareAndForward(req, resp, PageType.VIDEO_LIST_PAGE);
 			break;
 		}
 		case "New": {
 			entity = new Video();
-			req.setAttribute("newcr","Create");
-			req.setAttribute("video", entity);
-			req.getRequestDispatcher("views/edit_video.jsp").forward(req, res);
+			req.setAttribute("newcr", "Create");
+			list = dao.selectAll();
+			req.setAttribute("listvideos", list);
+			req.setAttribute("videodetail", entity);
+			PageInfo.prepareAndForward(req, resp, PageType.VIDEO_LIST_PAGE);
 			break;
 		}
 		}

@@ -56,7 +56,12 @@ public class adminUserServlet extends HttpServlet {
 		case "Save Profile": {
 			String keyWord = req.getParameter("id");
 			entity =  dao.findById(keyWord);
-			dao.update(entity);
+			try {
+				BeanUtils.populate(entity, req.getParameterMap());
+			}catch(Exception e) {
+				throw new RuntimeException();
+			}
+			dao.update(entity);			
 			req.setAttribute("userdetail", entity);
 			req.setAttribute("message", "Thay đổi thành công");
 			list = dao.findAll();

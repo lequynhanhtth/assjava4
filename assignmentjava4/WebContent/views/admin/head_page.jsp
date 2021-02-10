@@ -19,7 +19,7 @@
 				<div class="dropdown-menu dropdown-menu-right "
 					aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item" href="#">Edit Video</a> <a
-						class="dropdown-item" href="#">List Videos</a>
+						class="dropdown-item" href="adminHead?actions=video_list">List Videos</a>
 
 				</div>
 			</div>
@@ -41,7 +41,7 @@
 					aria-expanded="false">Reports</button>
 				<div class="dropdown-menu dropdown-menu-right "
 					aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">Favorites</a> <a
+					<a class="dropdown-item" href="adminHead?actions=report">Favorites</a> <a
 						class="dropdown-item" href="#">Favorites Users</a> <a
 						class="dropdown-item" href="#">Shared friends</a>
 				</div>

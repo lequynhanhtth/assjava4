@@ -12,7 +12,7 @@ import com.poly.common.PageInfo;
 import com.poly.common.PageType;
 
 /**
- * Servlet implementation class indexServlet
+ * Nhẫn 
  */
 @WebServlet("/indexServlet")
 public class indexServlet extends HttpServlet {

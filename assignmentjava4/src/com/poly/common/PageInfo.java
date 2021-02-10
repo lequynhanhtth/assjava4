@@ -27,9 +27,14 @@ public class PageInfo {
 				new PageInfo(null, "Đăng ký", "sign_up/sign_up_page.jsp", "login/login_script.jsp", false));
 		pageRoute.put(PageType.EDIT_PROFILE, new PageInfo("index_login/head_page.jsp", "Chỉnh sửa tài khoản",
 				"edit_user/edit_profile.jsp", "index_login/script_page.jsp", true));
-		pageRoute.put(PageType.CHANGE_PASSWORD, new PageInfo("index_login/head_page", "Đổi mật khẩu",
+		pageRoute.put(PageType.CHANGE_PASSWORD, new PageInfo("index_login/head_page.jsp", "Đổi mật khẩu",
 				"edit_user/changePassword.jsp", "index_login/script_page.jsp", true));
-		pageRoute.put(PageType.USER_LIST_PAGE, new PageInfo("admin/head_login.jsp","Quản lý người dùng", "admin/user_page.jsp", "login/login_script.jsp", true));
+		pageRoute.put(PageType.USER_LIST_PAGE, new PageInfo("admin/head_login.jsp", "Quản lý người dùng",
+				"admin/user_page.jsp", "login/login_script.jsp", true));
+		pageRoute.put(PageType.VIDEO_LIST_PAGE, new PageInfo("admin/head_login", "Quản lý Video",
+				"admin/video_page.jsp", "login/login_script.jsp", true));
+		pageRoute.put(PageType.REPORT_PAGE, new PageInfo("admin/head_login.jsp", "Thống kê", "admin/report_page.jsp",
+				"login/login_script.jsp", true));
 	}
 
 	public static void prepareAndForward(HttpServletRequest request, HttpServletResponse respone, PageType pageType)
@@ -42,7 +47,7 @@ public class PageInfo {
 				if (!username.getAdmin()) {
 					page.setHead("index_login/head_page.jsp");
 					page.setScriptUrl("index_login/script_page.jsp");
-				}else {
+				} else {
 					page.setHead("admin/head_page.jsp");
 					page.setScriptUrl("index_login/script_page.jsp");
 				}
