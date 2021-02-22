@@ -49,6 +49,8 @@ public class adminUserServlet extends HttpServlet {
 		case "edit": {	
 			String keyWord = req.getParameter("id");
 			entity = dao.findById(keyWord);
+			list = dao.findAll();
+			req.setAttribute("listusers", list);
 			req.setAttribute("userdetail", entity);
 			PageInfo.prepareAndForward(req, resp, PageType.USER_LIST_PAGE);
 			break;

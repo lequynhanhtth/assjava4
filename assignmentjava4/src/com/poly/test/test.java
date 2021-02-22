@@ -12,10 +12,10 @@ import com.poly.entity.User;
 
 public class test {
 	public static void main(String[] args) {
-		ShareDAO dao = new ShareDAO();
-		List<ReportShare> list = dao.selectReportShare("Sĩ siêu to khổng");
-		for(ReportShare x : list) {
-			System.out.println(x.getId());
+		VideoDAO dao = new VideoDAO();
+		List<String> list = dao.selectTitle();
+		for(String x : list) {
+			System.out.println(x);
 		}
 	}
 }

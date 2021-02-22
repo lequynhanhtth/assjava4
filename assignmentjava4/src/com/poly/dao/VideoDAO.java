@@ -1,5 +1,6 @@
 package com.poly.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -76,11 +77,47 @@ public class VideoDAO {
 		List<Report> list = query.getResultList();
 		return list;
 	}
-	public List<ReportUser> selectUserFavorite(String title){
+
+	public List<ReportUser> selectUserFavorite(String title) {
 		String jpql = "Select new ReportUser(o.user.id,o.user.fullname,o.user.email,o.likedate) from Favorite o where o.video.title = :title";
 		TypedQuery<ReportUser> query = em.createQuery(jpql, ReportUser.class);
 		query.setParameter("title", title);
-		List<ReportUser> list =  query.getResultList();
+		List<ReportUser> list = query.getResultList();
+		return list;
+	}
+
+	public List<String> selectTitle() {
+		String jqpl = "Select o.video.title from Favorite o";
+		TypedQuery<String> query = em.createQuery(jqpl, String.class);
+		List<String> list = query.getResultList();
+		return list;
+	}
+
+	public List<Video> selectCountVideo(int count, int page) {
+		List<Video> list = selectAll();
+		List<Video> listcount = new ArrayList<Video>();
+		if (count * page > list.size()) {
+			for (int i = count * (page - 1); i < list.size(); i++) {
+					listcount.add(list.get(i));
+			}
+		}else {
+			for(int i = count*(page-1); i < count ; i++) {
+				listcount.add(list.get(i));
+			}
+		}
+		return listcount;
+	}
+	public List<Video> selectInRow(int row ,  List<Video> listPage){
+		List<Video> list  = new ArrayList<Video>();
+		if(row*4>listPage.size()) {
+			for(int i = (row-1)*4 ; i<listPage.size() ; i++) {
+				list.add(listPage.get(i));
+			}
+		}else {
+			for(int i = (row-1)*4 ; i < row*4 ; i++) {
+				list.add(listPage.get(i));
+			}
+		}
 		return list;
 	}
 }

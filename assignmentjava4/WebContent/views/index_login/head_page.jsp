@@ -3,8 +3,8 @@
     <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
  <nav class="navbar navbar-expand-sm sticky-top header-colors ">
         <div class="col-3">
-            <a class="navbar-brand" href="#"><img id="logo" class="d-inline-block mr-1" alt="Logo"
-                    src="/image/youtube.png"> <span>Youtubi</span></a>
+            <a class="navbar-brand" href="openIndexLogin"><img id="logo" class="d-inline-block mr-1" alt="Logo"
+                    src="views/image/youtube.png"> <span>Youtubi</span></a>
         </div>
         <div class="col-6">
             <div class="collapse navbar-collapse" id="collapsibleNavId">

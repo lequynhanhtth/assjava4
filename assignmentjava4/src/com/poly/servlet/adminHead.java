@@ -50,6 +50,8 @@ public class adminHead extends HttpServlet {
 		case "report": {
 			VideoDAO dao = new VideoDAO();
 			List<Report> list =dao.selectVideoFavorite();		
+			List<String> titles = dao.selectTitle();
+			req.setAttribute("titles", titles);
 			req.setAttribute("favorites", list);
 			req.setAttribute("report1", "active");
 			PageInfo.prepareAndForward(req, resp, PageType.REPORT_PAGE);

@@ -16,14 +16,15 @@
 		<div id="home"
 			class="container tab-pane ${empty active ? 'active':'fade'}">
 			<br>
-			<form>
+			<form action="adminVideoServlet" enctype="multipart/form-data" method="post">
 				<div class="row">
-
 					<div class="col-md-4 border-right">
 						<div
 							class="d-flex flex-column align-items-center text-center p-3 py-5">
-							<img class="img-thumbnail mt-5" src="views/image/youtube.png"
+							<img class="img-thumbnail mt-5" src="files/${videodetail.poster}"
 								width="400">
+								 <label class="form-label" style="color: white;" for="customFile">Cập nhật hình</label> <input type="file" name ="photo_file" class="form-control py-1"
+								id="customFile" />
 						</div>
 					</div>
 					<div class="col-md-8">
@@ -80,14 +81,14 @@
 							</div>
 							<div class="mt-5 text-rigx1ht">
 								<input class="btn btn-primary profile-button" name="actions"
-									value="${newcr}" type="submit">
-									<c:if test="${empty hide} ">
-									 <input
+									value="New" type="submit"> <input
+									class="btn btn-primary profile-button" name="actions"
+									value="Create" type="submit"> <input
 									class="btn btn-primary profile-button " name="actions"
 									value="Update" type="submit"> <input
 									class="btn btn-danger profile-button " name="actions"
 									value="Delete" type="submit">
-									</c:if>
+
 							</div>
 						</div>
 					</div>

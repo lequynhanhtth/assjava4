@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <div class="row w-100 mt-4">
 	<div class="col-2 "></div>
@@ -99,189 +100,86 @@
 	<h5 class="card-title" style="font-size: 30px;">Top Video</h5>
 </div>
 <div class="row w-100 mt-2 align-items-start ">
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
+	<c:forEach items="${listvideo1}" var="video1">
+		<div class="col-3  ">
+			<div class="float-right  " style="width: 95%">
+				<a href="openDetailVideo?id=${video1.id}"><img class="img-thumbnail img-fluid"
+					src="files/${video1.poster}"> </a>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 float-left pl-0">
+							<a class="navbar-brand " href="#"><img id="logo"
+								class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png"></a>
+						</div>
+						<div class="col-10 pr-0">
+							<a href="#">
+								<h5 class="card-title">${video1.title}</h5>
+								<p class="card-text">
+									LAL <br>${video1.views} Lượt xem
+								</p>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
+	</c:forEach>
 </div>
 <div class="row w-100 mt-2 align-items-start ">
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo" src="/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<c:forEach items="${listvideo2}" var="video2">
 
+		<div class="col-3  ">
+			<div class="float-right  " style="width: 95%">
+				<a href="openDetailVideo?id=${video2.id}"><img class="img-thumbnail img-fluid"
+					src="files/${video2.poster}"> </a>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 float-left pl-0">
+							<a class="navbar-brand " href="#"><img id="logo"
+								class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png"></a>
+						</div>
+						<div class="col-10 pr-0">
+							<a href="#">
+								<h5 class="card-title">${video2.title}</h5>
+								<p class="card-text">
+									LAL <br>${video2.views}  Lượt xem
+								</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</c:forEach>
 </div>
-
-
+<div class="row w-100 mt-2 align-items-start ">
+	<c:forEach items="${listvideo3}" var="video3">
+		<div class="col-3  ">
+			<div class="float-right  " style="width: 95%">
+				<a href="openDetailVideo?id=${video3.id}"><img class="img-thumbnail img-fluid"
+					src="files/${video3.poster}"> </a>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 float-left pl-0">
+							<a class="navbar-brand " href="#"><img id="logo"
+								class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png"></a>
+						</div>
+						<div class="col-10 pr-0">
+							<a href="#">
+								<h5 class="card-title">${video3.title}</h5>
+								<p class="card-text">
+									LQN <br>${video3.views} Lượt xem
+								</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+</div>
 <hr class="solid">
 <div class="row w-100 justify-content-center align-self-center">
 	<nav aria-label="Page navigation example">
