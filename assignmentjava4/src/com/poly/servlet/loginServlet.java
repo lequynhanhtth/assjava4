@@ -112,7 +112,7 @@ public class loginServlet extends HttpServlet {
 				PageInfo.prepareAndForward(request, response, PageType.LOGIN);
 			}
 		} catch (Exception e) {
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
 	}
 

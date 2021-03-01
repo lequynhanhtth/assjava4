@@ -93,28 +93,47 @@ public class VideoDAO {
 		return list;
 	}
 
-	public List<Video> selectCountVideo(int count, int page) {
-		List<Video> list = selectAll();
+	public List<Video> selectCountFavoritesVideo(int count, int page, String id) {
+		String jqpl = "select o.video from Favorite o where o.user.id = :id";
+		TypedQuery<Video> query = em.createQuery(jqpl, Video.class);
+		query.setParameter("id", id);
+		List<Video> list = query.getResultList();
 		List<Video> listcount = new ArrayList<Video>();
 		if (count * page > list.size()) {
 			for (int i = count * (page - 1); i < list.size(); i++) {
-					listcount.add(list.get(i));
+				listcount.add(list.get(i));
 			}
-		}else {
-			for(int i = count*(page-1); i < count ; i++) {
+		} else {
+			for (int i = count * (page - 1); i < count; i++) {
 				listcount.add(list.get(i));
 			}
 		}
 		return listcount;
 	}
-	public List<Video> selectInRow(int row ,  List<Video> listPage){
-		List<Video> list  = new ArrayList<Video>();
-		if(row*4>listPage.size()) {
-			for(int i = (row-1)*4 ; i<listPage.size() ; i++) {
+
+	public List<Video> selectCountVideo(int count, int page) {
+		List<Video> list = selectAll();
+		List<Video> listcount = new ArrayList<Video>();
+		if (count * page > list.size()) {
+			for (int i = count * (page - 1); i < list.size(); i++) {
+				listcount.add(list.get(i));
+			}
+		} else {
+			for (int i = count * (page - 1); i < count; i++) {
+				listcount.add(list.get(i));
+			}
+		}
+		return listcount;
+	}
+
+	public List<Video> selectInRow(int row, List<Video> listPage) {
+		List<Video> list = new ArrayList<Video>();
+		if (row * 4 > listPage.size()) {
+			for (int i = (row - 1) * 4; i < listPage.size(); i++) {
 				list.add(listPage.get(i));
 			}
-		}else {
-			for(int i = (row-1)*4 ; i < row*4 ; i++) {
+		} else {
+			for (int i = (row - 1) * 4; i < row * 4; i++) {
 				list.add(listPage.get(i));
 			}
 		}

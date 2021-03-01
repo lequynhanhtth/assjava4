@@ -20,15 +20,16 @@
 								lượt xem • Đã công chiếu vào 30 thg 11, 2020</p>
 						</div>
 						<div class="col-6 float-right">
-							<button type="button"
+							<button type="button" data-toggle="modal"
+								data-target="#exampleModalCenter"
 								class="btn btn-outline-primary float-right ">
 								<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
 							</button>
 							<a type="button" href="likeServlet?id=${videodetail.id}"
 								class="btn btn-outline-success ${likeEmpty} float-right mr-2">
-								<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>
-								<c:if test="${empty like}">${videodetail.like}</c:if>
-								<c:if test="${not empty like}">0</c:if>
+								<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i> <c:if
+									test="${empty like}">${videodetail.like}</c:if> <c:if
+									test="${not empty like}">0</c:if>
 							</a>
 						</div>
 					</div>
@@ -61,7 +62,8 @@
 			<div class="row w-100 mr-0">
 				<div class="float-left " style="width: 100%"></div>
 				<div class="col-6 mx-0 px-0">
-					<a href="openDetailVideo?id=${video1.id}" class="d-block mb-4 h-100"> <img
+					<a href="openDetailVideo?id=${video1.id}"
+						class="d-block mb-4 h-100"> <img
 						class="img-fluid img-thumbnail" src="files/${video1.poster}"
 						alt="">
 					</a>
@@ -82,5 +84,41 @@
 				</div>
 			</div>
 		</c:forEach>
+	</div>
+</div>
+<div class="modal ${not empty message ?'show':'fade'}" id="exampleModalCenter" tabindex="-1"
+	role="dialog" aria-labelledby="exampleModalCenterTitle"
+	aria-hidden="true" style="display:${not empty message ?'block':'none'}">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Send Email</h5>
+
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="sendEmailServlet" method="post">
+					<c:if test="${not empty message}">
+						<div class="alert alert-primary" role="alert">${message}</div>
+					</c:if>
+					<div class="form-group">
+						<label>To: </label><input type="text" name="to"
+							class="form-control" placeholder="Enter To">
+					</div>
+					<div class="form-group">
+						<label>Mật khẩu Gmail: </label><input type="password" name="password"
+							class="form-control" placeholder="Enter Password">
+					</div>
+					<input type="hidden" name="id" value="${videodetail.id}"/>
+					<button class="btn btn-primary">Send</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal" onclick="document.getElementById('exampleModalCenter').style.display = 'none';">Close</button>
+					<br />
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
