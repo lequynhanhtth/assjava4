@@ -47,23 +47,25 @@ public class PageInfo {
 	}
 
 	public static void prepareAndForward(HttpServletRequest request, HttpServletResponse respone, PageType pageType)
-			throws ServletException, IOException  {
+			throws ServletException, IOException {
 		PageInfo page = pageRoute.get(pageType);
 		if (page.getTitle().equals("Trang chủ")) {
-			if (SessionUtils.get(request,"username") != null) {
-				User entity = (User)SessionUtils.get(request,"username");
-				if(entity.getAdmin()) {
-					page= pageRoute.get(PageType.INDEX_ADMIN);
-				}else {
-					VideoDAO Vdao = new VideoDAO();
-					List<Video> list = Vdao.selectCountVideo(12, 1);
-					List<Video> list1 = Vdao.selectInRow(1, list);
-					List<Video> list2 = Vdao.selectInRow(2, list);
-					List<Video> list3 = Vdao.selectInRow(3, list);
-					request.setAttribute("listvideo1", list1);
-					request.setAttribute("listvideo2", list2);
-					request.setAttribute("listvideo3", list3);
-					page= pageRoute.get(PageType.INDEX_USER);
+			if (request.getAttribute("listvideo1") == null) {
+				if (SessionUtils.get(request, "username") != null) {
+					User entity = (User) SessionUtils.get(request, "username");
+					if (entity.getAdmin()) {
+						page = pageRoute.get(PageType.INDEX_ADMIN);
+					} else {
+						VideoDAO Vdao = new VideoDAO();
+						List<Video> list = Vdao.selectCountVideo(12, 1);
+						List<Video> list1 = Vdao.selectInRow(1, list);
+						List<Video> list2 = Vdao.selectInRow(2, list);
+						List<Video> list3 = Vdao.selectInRow(3, list);
+						request.setAttribute("listvideo1", list1);
+						request.setAttribute("listvideo2", list2);
+						request.setAttribute("listvideo3", list3);
+						page = pageRoute.get(PageType.INDEX_USER);
+					}
 				}
 			}
 		}

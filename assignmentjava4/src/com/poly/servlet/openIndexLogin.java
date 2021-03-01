@@ -25,9 +25,11 @@ public class openIndexLogin extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		VideoDAO dao = new VideoDAO();
 		List<Video> list = dao.selectCountVideo(12, 1);
+		int count = list.size();
 		List<Video> list1 = dao.selectInRow(1, list);
 		List<Video> list2 = dao.selectInRow(2, list);
 		List<Video> list3 = dao.selectInRow(3, list);
+		
 		req.setAttribute("listvideo1", list1);
 		req.setAttribute("listvideo2", list2);
 		req.setAttribute("listvideo3", list3);

@@ -33,8 +33,8 @@
                     <a class="dropdown-item" href="LogoffServlet">Logoff</a>
                 </div>
             </div>
-            <input type="button" href="openFavoriteVideoIndex" class="btn btn-outline-danger float-right mr-2"><i class="fa fa-heart pr-2"
-                style="font-size: 25px"></i>Favorite Video<input/>
+            <a type="button" href="openFavoriteVideoIndex?id=${username.id}" class="btn btn-outline-danger float-right mr-2"><i class="fa fa-heart pr-2"
+                style="font-size: 25px" value="Favorite Video"></i>Favorite Video</a>
         </div>
         
     </nav>
