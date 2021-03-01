@@ -59,4 +59,5 @@ public class Favorite {
 	public void setLikedate(Date likedate) {
 		this.likedate = likedate;
 	}
+	
 }

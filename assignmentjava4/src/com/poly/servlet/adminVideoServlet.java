@@ -56,8 +56,7 @@ public class adminVideoServlet extends HttpServlet {
 
 		switch (action) {
 		case "edit": {
-			String keyWord = req.getParameter("id");
-
+			int keyWord = Integer.parseInt(req.getParameter("id"));
 			entity = dao.findById(keyWord);
 			req.setAttribute("videodetail", entity);
 			list = dao.selectAll();
@@ -67,7 +66,7 @@ public class adminVideoServlet extends HttpServlet {
 			break;
 		}
 		case "Update": {
-			String keyWord = req.getParameter("id");
+			int keyWord = Integer.parseInt(req.getParameter("id"));
 			entity = dao.findById(keyWord);
 			Part photo = req.getPart("photo_file");
 			File photoFile = new File(dir, photo.getSubmittedFileName());
@@ -88,7 +87,7 @@ public class adminVideoServlet extends HttpServlet {
 			break;
 		}
 		case "Delete": {
-			String keyWord = req.getParameter("id");
+			int keyWord = Integer.parseInt(req.getParameter("id"));
 			dao.delete(keyWord);
 			entity = new Video();
 

@@ -97,7 +97,7 @@
 	<div class="col-2"></div>
 </div>
 <div class="row w-100 mt-5 align-items-start pl-5 mr-0 mb-0 ">
-	<h5 class="card-title" style="font-size: 30px;">Top Video</h5>
+	<h5 class="card-title" style="font-size: 30px;">Video</h5>
 </div>
 <div class="row w-100 mt-2 align-items-start ">
 	<c:forEach items="${listvideo1}" var="video1">
@@ -112,7 +112,7 @@
 								class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png"></a>
 						</div>
 						<div class="col-10 pr-0">
-							<a href="#">
+							<a href="openDetailVideo?id=${video1.id}">
 								<h5 class="card-title">${video1.title}</h5>
 								<p class="card-text">
 									LAL <br>${video1.views} Lượt xem
@@ -133,7 +133,7 @@
 			<div class="float-right  " style="width: 95%">
 				<a href="openDetailVideo?id=${video2.id}"><img class="img-thumbnail img-fluid"
 					src="files/${video2.poster}"> </a>
-				<div class="card-body">
+				<div class="card-body"> 
 					<div class="row">
 						<div class="col-2 float-left pl-0">
 							<a class="navbar-brand " href="#"><img id="logo"

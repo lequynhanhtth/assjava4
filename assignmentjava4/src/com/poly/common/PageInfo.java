@@ -50,7 +50,6 @@ public class PageInfo {
 			throws ServletException, IOException  {
 		PageInfo page = pageRoute.get(pageType);
 		if (page.getTitle().equals("Trang chủ")) {
-			System.out.println("ádas");
 			if (SessionUtils.get(request,"username") != null) {
 				User entity = (User)SessionUtils.get(request,"username");
 				if(entity.getAdmin()) {

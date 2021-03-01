@@ -45,7 +45,7 @@ public class VideoDAO {
 		return entity;
 	}
 
-	public Video delete(String keyWord) {
+	public Video delete(int keyWord) {
 		try {
 			em.getTransaction().begin();
 			Video entity = findById(keyWord);
@@ -58,9 +58,9 @@ public class VideoDAO {
 		}
 	}
 
-	public Video findById(String keyWord) {
+	public Video findById(int keyWord) {
 
-		Video entity = em.find(Video.class, Integer.parseInt(keyWord));
+		Video entity = em.find(Video.class, keyWord);
 		return entity;
 	}
 

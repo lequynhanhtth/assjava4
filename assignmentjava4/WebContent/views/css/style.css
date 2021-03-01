@@ -76,3 +76,6 @@ hr.solid {
   height: 200px !important;
   width: 90%;
 }
+a:hover{
+	text-decoration:none !important;
+}
