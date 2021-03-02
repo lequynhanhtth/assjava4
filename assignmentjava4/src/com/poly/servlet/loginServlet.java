@@ -1,6 +1,7 @@
 package com.poly.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -99,6 +100,15 @@ public class loginServlet extends HttpServlet {
 					SessionUtils.add(request, "name", user.getFullname());
 					VideoDAO Vdao = new VideoDAO();
 					List<Video> list = Vdao.selectCountVideo(12, 1);
+					List<Video> listall = Vdao.selectAll();
+					int count = listall.size();
+					int str = count % 12 == 0 ? count / 12 : count / 12 + 1;
+					List<Integer> countPage = new ArrayList<Integer>();
+					for (int i = 1; i <= str; i++) {
+						countPage.add(i);
+					}
+					request.setAttribute("countSelect", 1);
+					request.setAttribute("countPage", countPage);
 					List<Video> list1 = Vdao.selectInRow(1, list);
 					List<Video> list2 = Vdao.selectInRow(2, list);
 					List<Video> list3 = Vdao.selectInRow(3, list);
@@ -112,7 +122,9 @@ public class loginServlet extends HttpServlet {
 				PageInfo.prepareAndForward(request, response, PageType.LOGIN);
 			}
 		} catch (Exception e) {
+			request.setAttribute("message", "Tài khoản không tồn tại");
 			e.printStackTrace();
+			PageInfo.prepareAndForward(request, response, PageType.LOGIN);
 		}
 	}
 

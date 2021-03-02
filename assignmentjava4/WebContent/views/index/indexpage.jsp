@@ -1,390 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="row w-100 mt-4">
-	<div class="col-2 "></div>
-	<div class="col-8">
-		<div id="video-carousel-example2" class="carousel slide carousel-fade"
-			data-ride="carousel">
-			<!--Indicators-->
-			<ol class="carousel-indicators">
-				<li data-target="#video-carousel-example2" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#video-carousel-example2" data-slide-to="1"></li>
-				<li data-target="#video-carousel-example2" data-slide-to="2"></li>
-			</ol>
-			<!--/.Indicators-->
-			<!--Slides-->
-			<div class="carousel-inner" role="listbox">
-				<!-- First slide -->
-				<div class="carousel-item active">
-					<!--Mask color-->
-					<div class="view">
-						<!--Video source-->
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item"
-								src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<div class="row w-100 mt-4 mr-0">
+	<div class="col-8 ml-5 pr-0">
+		<div class="row w-100 mx-0">
+			<div class="float-right " style="width: 95%">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+						src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<h5 class="card-title">${videodetail.title}</h5>
+						</a>
+					</div>
+					<div class="row">
+						<div class="col-6 px-0">
+							<p class="card-text " style="font-size: 16px;">${videodetail.views}
+								lượt xem • Đã công chiếu vào 30 thg 11, 2020</p>
+						</div>
+						<div class="col-6 float-right">
+							<button type="button" onclick="sweetalertclick()"
+								class="btn btn-outline-primary float-right ">
+								<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
+							</button>
+							<a type="button" onclick="sweetalertclick()"
+								class="btn btn-outline-success ${likeEmpty} float-right mr-2">
+								<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i> <c:if
+									test="${empty like}">${videodetail.like}</c:if> <c:if
+									test="${not empty like}">0</c:if>
+							</a>
 						</div>
 					</div>
-
-					<!--Caption-->
-					<div class="carousel-caption">
-						<div class="animated fadeInDown">
-							<h3 class="h3-responsive">Light mask</h3>
+					<hr class="solid">
+					<div class="row">
+						<div class="col-1">
+							<a class="navbar-brand" href="#"><img id="logo"
+								class="d-inline-block mr-1" alt="Logo"
+								src="views/image/youtube.png"> </a>
+						</div>
+						<div class="col-10 ml-1">
+							<div class="row mt-2">
+								<h5 class="card-title">Lê Quý Nhẫn</h5>
+							</div>
+							<div class="row mt-n2">
+								<p class="card-text " style="font-size: 13px;">8.55K
+									subscribers</p>
+							</div>
+							<div class="row mt-4">
+								<p class="card-title" style="font-size: 16px;">${videodetail.description}</p>
+							</div>
 						</div>
 					</div>
-					<!--Caption-->
 				</div>
-				<!-- /.First slide -->
-
-				<!-- Second slide -->
-				<div class="carousel-item">
-					<!--Mask color-->
-					<div class="view">
-						<!--Video source-->
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item"
-								src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+	<div class="col-3 px-0">
+		<c:forEach items="${videolist}" var="video1">
+			<div class="row w-100 mr-0">
+				<div class="float-left " style="width: 100%"></div>
+				<div class="col-6 mx-0 px-0">
+					<a href="openDetailVideo?id=${video1.id}"
+						class="d-block mb-4 h-100"> <img
+						class="img-fluid img-thumbnail" src="files/${video1.poster}"
+						alt="">
+					</a>
+				</div>
+				<div class="col-6 py-0">
+					<a href="openDetailVideo?id=${video1.id}">
+						<div class="card-body py-0 pr-0">
+							<div class="row">
+								<h5 class="card-title" style="font-size: 16px;">${video1.title}</h5>
+								<div class="w-100"></div>
+								<p class="card-text " style="font-size: 14px;">
+									Lê Quý Nhẫn<br>${video1.views} lượt xem <br>1 ngày
+									trước
+								</p>
+							</div>
 						</div>
-					</div>
-
-					<!--Caption-->
-					<div class="carousel-caption">
-						<div class="animated fadeInDown">
-							<h3 class="h3-responsive">Super light mask</h3>
-						</div>
-					</div>
-					<!--Caption-->
+					</a>
 				</div>
-				<!-- /.Second slide -->
-
-				<!-- Third slide -->
-				<div class="carousel-item">
-					<!--Mask color-->
-					<div class="view">
-						<!--Video source-->
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item"
-								src="https://www.youtube.com/embed/YDzv0GC1SfI" allowfullscreen></iframe>
-						</div>
-					</div>
-
-					<!--Caption-->
-					<div class="carousel-caption">
-						<div class="animated fadeInDown">
-							<h3 class="h3-responsive">Strong mask</h3>
-						</div>
-					</div>
-					<!--Caption-->
-				</div>
-				<!-- /.Third slide -->
 			</div>
-			<!--/.Slides-->
-			<!--Controls-->
-			<a class="carousel-control-prev" href="#video-carousel-example2"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#video-carousel-example2"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
-			<!--/.Controls-->
-		</div>
+		</c:forEach>
 	</div>
-	<div class="col-2"></div>
 </div>
-<div class="row w-100 mt-5 align-items-start pl-5 mr-0 mb-0 ">
-	<h5 class="card-title" style="font-size: 30px;">Top Video</h5>
-</div>
-<div class="row w-100 mt-2 align-items-start ">
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="modal ${not empty message ?'show':'fade'}"
+	id="exampleModalCenter" tabindex="-1" role="dialog"
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+	style="display:${not empty message ?'block':'none'}">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Send Email</h5>
 
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="sendEmailServlet" method="post">
+					<c:if test="${not empty message}">
+						<div class="alert alert-primary" role="alert">${message}</div>
+					</c:if>
+					<div class="form-group">
+						<label>To: </label><input type="text" name="to"
+							class="form-control" placeholder="Enter To">
+					</div>
+					<div class="form-group">
+						<label>Mật khẩu Gmail: </label><input type="password"
+							name="password" class="form-control" placeholder="Enter Password">
+					</div>
+					<input type="hidden" name="id" value="${videodetail.id}" />
+					<button class="btn btn-primary">Send</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal"
+						onclick="document.getElementById('exampleModalCenter').style.display = 'none';">Close</button>
+					<br />
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="row w-100 mt-2 align-items-start ">
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-3  ">
-		<div class="float-right  " style="width: 95%">
-			<a href="#"><img class="img-thumbnail img-fluid"
-				src="views/image/youtube.png"> </a>
-			<div class="card-body">
-				<div class="row">
-					<div class="col-2 float-left pl-0">
-						<a class="navbar-brand " href="#"><img id="logo"
-							class="d-inline-block mr-1" alt="Logo"
-							src="views/image/youtube.png"></a>
-					</div>
-					<div class="col-10 pr-0">
-						<a href="#">
-							<h5 class="card-title">Tage(Official Lyric Video)</h5>
-							<p class="card-text">
-								Tage M. <br>15tr lượt xem
-							</p>
-						</a>
-					</div>
-					<div
-						class="row w-100 justify-content-center align-self-center mt-2">
-						<button type="button"
-							class="btn btn-outline-success float-right mr-2">
-							<i class="fa fa-thumbs-up pr-2" style="font-size: 24px"></i>1N
-						</button>
-						<button type="button" class="btn btn-outline-primary float-right ">
-							<i class="fa fa-share pr-2" style="font-size: 24px"></i>Chia sẽ
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript">
+	function sweetalertclick() {
+		Swal.fire({
+			icon : 'error',
+			title : 'Oops...',
+			text : 'Bạn chưa đăng nhập!',
 
-</div>
-
-<hr class="solid">
-<div class="row w-100 justify-content-center align-self-center">
-	<nav aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="btn btn-outline-info m-1 active"
-				href="#">1</a></li>
-			<li class="page-item"><a class="btn btn-outline-info m-1"
-				href="#">2</a></li>
-			<li class="page-item"><a class="btn btn-outline-info m-1"
-				href="#">3</a></li>
-		</ul>
-	</nav>
-</div>
-<div class="row w-100 justify-content-center align-self-center">
-
-	<button type="button" class="btn btn-outline-info m-1">First</button>
-	<button type="button" class="btn btn-outline-info m-1">Previous</button>
-	<button type="button" class="btn btn-outline-info m-1">Next</button>
-	<button type="button" class="btn btn-outline-info m-1">Last</button>
-</div>
+		})
+	}
+</script>

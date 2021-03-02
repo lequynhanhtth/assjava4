@@ -1,6 +1,7 @@
 package com.poly.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,11 +26,18 @@ public class openIndexLogin extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		VideoDAO dao = new VideoDAO();
 		List<Video> list = dao.selectCountVideo(12, 1);
-		int count = list.size();
+		List<Video> listall = dao.selectAll();
+		int count = listall.size();
+		int str = count % 12 == 0 ? count / 12 : count / 12 + 1;
+		List<Integer> countPage = new ArrayList<Integer>();
+		for (int i = 1; i <= str; i++) {
+			countPage.add(i);
+		}
+		req.setAttribute("countSelect", 1);
+		req.setAttribute("countPage", countPage);
 		List<Video> list1 = dao.selectInRow(1, list);
 		List<Video> list2 = dao.selectInRow(2, list);
 		List<Video> list3 = dao.selectInRow(3, list);
-		
 		req.setAttribute("listvideo1", list1);
 		req.setAttribute("listvideo2", list2);
 		req.setAttribute("listvideo3", list3);

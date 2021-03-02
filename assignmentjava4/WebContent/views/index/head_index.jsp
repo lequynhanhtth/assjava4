@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <nav class="navbar navbar-expand-sm sticky-top header-colors ">
 	<div class="col-3">
-		<a class="navbar-brand" href="#"><img id="logo"
+		<a class="navbar-brand" href="indexServlet?actions=''"><img id="logo"
 			class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png">
 			<span>Youtubi</span></a>
 	</div>

@@ -1,6 +1,7 @@
 package com.poly.common;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,10 @@ public class PageInfo {
 	static {
 		pageRoute.put(PageType.LOGIN,
 				new PageInfo(null, "Đăng nhập", "login/login_page.jsp", "login/login_script.jsp", false));
-		pageRoute.put(PageType.INDEX, new PageInfo("index/head_index.jsp", "Trang chủ", "index/indexpage.jsp",
+		pageRoute.put(PageType.INDEX_DETAIL,
+				new PageInfo("index/head_index.jsp", "Trang chủ", "index/indexpage.jsp",
+						"index_login/script_page.jsp", true));
+		pageRoute.put(PageType.INDEX, new PageInfo("index/head_index.jsp", "Trang chủ", "index/bodypage.jsp",
 				"index_login/script_page.jsp", true));
 		pageRoute.put(PageType.SIGN_UP,
 				new PageInfo(null, "Đăng ký", "sign_up/sign_up_page.jsp", "login/login_script.jsp", false));
@@ -39,7 +43,7 @@ public class PageInfo {
 		pageRoute.put(PageType.REPORT_PAGE, new PageInfo("admin/head_page.jsp", "Thống kê", "admin/report_page.jsp",
 				"admin/script_page.jsp", true));
 		pageRoute.put(PageType.INDEX_ADMIN,
-				new PageInfo("admin/head_page.jsp", "Trang chủ", "index/indexpage.jsp", "admin/script_page.jsp", true));
+				new PageInfo("admin/head_page.jsp", "Trang chủ", "admin/trangchu.jsp", "admin/script_page.jsp", true));
 		pageRoute.put(PageType.INDEX_USER, new PageInfo("index_login/head_page.jsp", "Trang chủ",
 				"index_login/body_page.jsp", "index_login/script_page.jsp", true));
 		pageRoute.put(PageType.VIDEO_DETAIL_PAGE, new PageInfo("index_login/head_page.jsp", "Video",
@@ -56,19 +60,30 @@ public class PageInfo {
 					if (entity.getAdmin()) {
 						page = pageRoute.get(PageType.INDEX_ADMIN);
 					} else {
-						VideoDAO Vdao = new VideoDAO();
-						List<Video> list = Vdao.selectCountVideo(12, 1);
-						List<Video> list1 = Vdao.selectInRow(1, list);
-						List<Video> list2 = Vdao.selectInRow(2, list);
-						List<Video> list3 = Vdao.selectInRow(3, list);
+						VideoDAO dao = new VideoDAO();
+						List<Video> list = dao.selectCountVideo(12, 1);
+						List<Video> listall = dao.selectAll();
+						int count = listall.size();
+						int str = count % 12 == 0 ? count / 12 : count / 12 + 1;
+						List<Integer> countPage = new ArrayList<Integer>();
+						for (int i = 1; i <= str; i++) {
+							countPage.add(i);
+						}
+						request.setAttribute("countSelect", 1);
+						request.setAttribute("countPage", countPage);
+						List<Video> list1 = dao.selectInRow(1, list);
+						List<Video> list2 = dao.selectInRow(2, list);
+						List<Video> list3 = dao.selectInRow(3, list);
 						request.setAttribute("listvideo1", list1);
 						request.setAttribute("listvideo2", list2);
 						request.setAttribute("listvideo3", list3);
-						page = pageRoute.get(PageType.INDEX_USER);
+						PageInfo.prepareAndForward(request, respone, PageType.INDEX_USER);
 					}
 				}
 			}
+
 		}
+	
 		request.setAttribute("page", page);
 		request.getRequestDispatcher("/views/layout.jsp").forward(request, respone);
 	}

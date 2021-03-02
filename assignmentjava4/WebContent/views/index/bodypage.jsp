@@ -103,7 +103,7 @@
 	<c:forEach items="${listvideo1}" var="video1">
 		<div class="col-3  ">
 			<div class="float-right  " style="width: 95%">
-				<a href="openDetailVideo?id=${video1.id}"><img class="img-thumbnail img-fluid"
+				<a href="opendetail?id=${video1.id}"><img class="img-thumbnail img-fluid"
 					src="files/${video1.poster}"> </a>
 				<div class="card-body">
 					<div class="row">
@@ -112,7 +112,7 @@
 								class="d-inline-block mr-1" alt="Logo" src="views/image/youtube.png"></a>
 						</div>
 						<div class="col-10 pr-0">
-							<a href="openDetailVideo?id=${video1.id}">
+							<a href="opendetail?id=${video1.id}">
 								<h5 class="card-title">${video1.title}</h5>
 								<p class="card-text">
 									LAL <br>${video1.views} Lượt xem
@@ -131,7 +131,7 @@
 
 		<div class="col-3  ">
 			<div class="float-right  " style="width: 95%">
-				<a href="openDetailVideo?id=${video2.id}"><img class="img-thumbnail img-fluid"
+				<a href="opendetail?id=${video2.id}"><img class="img-thumbnail img-fluid"
 					src="files/${video2.poster}"> </a>
 				<div class="card-body"> 
 					<div class="row">
@@ -158,7 +158,7 @@
 	<c:forEach items="${listvideo3}" var="video3">
 		<div class="col-3  ">
 			<div class="float-right  " style="width: 95%">
-				<a href="openDetailVideo?id=${video3.id}"><img class="img-thumbnail img-fluid"
+				<a href="opendetail?id=${video3.id}"><img class="img-thumbnail img-fluid"
 					src="files/${video3.poster}"> </a>
 				<div class="card-body">
 					<div class="row">

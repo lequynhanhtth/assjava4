@@ -65,7 +65,7 @@ public class VideoDAO {
 	}
 
 	public List<Video> selectAll() {
-		String jqpl = "select o from Video o order by o.video.view DESC";
+		String jqpl = "select o from Video o order by o.views DESC";
 		TypedQuery<Video> query = em.createQuery(jqpl, Video.class);
 		List<Video> list = query.getResultList();
 		return list;
